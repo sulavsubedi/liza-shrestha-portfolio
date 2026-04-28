@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liza Shrestha | Aged & Home Care Professional</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #0d9488; --primary-dark: #0f766e; --secondary: #f59e0b; --bg: #0f172a; --card: #1e293b; --text: #e2e8f0; --text-muted: #94a3b8; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        a { color: var(--primary); text-decoration: none; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        /* Navbar */
+        nav { position: fixed; top: 0; width: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #334155; z-index: 1000; padding: 15px 0; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: var(--text); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        @media(max-width: 768px) { .nav-links { display: none; } }
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; background: radial-gradient(ellipse at top, #1e293b 0%, var(--bg) 70%); }
+        .hero-content { max-width: 600px; }
+        .badge { display: inline-block; background: rgba(13, 148, 136, 0.2); color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 20px; border: 1px solid var(--primary); }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; line-height: 1.2; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; }
+        .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-block; }
+        .btn-primary { background: var(--primary); color: white; border: 2px solid var(--primary); }
+        .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+        .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-outline:hover { background: var(--primary); color: white; }
+        /* Sections */
+        section { padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .section-title p { color: var(--text-muted); }
+        .section-title span { color: var(--primary); }
+        /* Cards Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--card); border-radius: 16px; padding: 30px; border: 1px solid #334155; transition: transform 0.3s, border-color 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .card h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.3rem; }
+        .card .card-meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
+        .card ul { list-style: none; }
+        .card ul li { padding: 5px 0; color: var(--text-muted); font-size: 0.95rem; }
+        .card ul li::before { content: "\2022"; color: var(--primary); margin-right: 8px; }
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .skill-item { background: var(--card); border-radius: 12px; padding: 25px; text-align: center; border: 1px solid #334155; }
+        .skill-item .icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .skill-item h4 { color: var(--text); margin-bottom: 5px; }
+        .skill-item p { color: var(--text-muted); font-size: 0.9rem; }
+        /* Certifications */
+        .cert-item { display: flex; align-items: flex-start; gap: 15px; background: var(--card); border-radius: 12px; padding: 20px; border: 1px solid #334155; margin-bottom: 15px; }
+        .cert-item .icon { font-size: 2rem; color: var(--secondary); }
+        .cert-item h4 { color: var(--text); margin-bottom: 5px; }
+        .cert-item p { color: var(--text-muted); font-size: 0.9rem; }
+        /* Trainings Tags */
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+        .tag { background: rgba(13, 148, 136, 0.15); color: var(--primary); padding: 8px 18px; border-radius: 20px; font-size: 0.9rem; border: 1px solid rgba(13, 148, 136, 0.3); }
+        /* Education */
+        .edu-item { background: var(--card); border-radius: 12px; padding: 25px; border: 1px solid #334155; margin-bottom: 15px; }
+        .edu-item h4 { color: var(--primary); font-size: 1.2rem; margin-bottom: 5px; }
+        .edu-item .edu-school { color: var(--secondary); font-size: 0.95rem; margin-bottom: 5px; }
+        .edu-item p { color: var(--text-muted); font-size: 0.9rem; }
+        /* Achievements */
+        .achievement-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+        .achievement-item .check { color: var(--primary); font-size: 1.5rem; }
+        .achievement-item p { color: var(--text); }
+        /* Contact */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .contact-item { background: var(--card); border-radius: 16px; padding: 30px; text-align: center; border: 1px solid #334155; transition: all 0.3s; }
+        .contact-item:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .contact-item .icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .contact-item h4 { color: var(--text); margin-bottom: 5px; }
+        .contact-item p { color: var(--text-muted); }
+        /* Footer */
+        footer { background: var(--card); padding: 40px 0; text-align: center; border-top: 1px solid #334155; }
+        footer p { color: var(--text-muted); }
+        .social-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+        .social-links a { color: var(--text); font-size: 1.5rem; transition: color 0.3s; }
+        .social-links a:hover { color: var(--primary); }
+        /* Scroll to top */
+        #scrollTop { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; border: none; z-index: 999; }
+        #scrollTop:hover { background: var(--primary-dark); }
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; opacity: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="container">
+            <div class="logo">Liza.dev</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <span class="badge">Available for Care Positions</span>
+                <h1>Hi, I'm <span>Liza Shrestha</span></h1>
+                <p>Compassionate and dedicated Aged & Home Care Professional based in Claymore, NSW. I provide personalized support to elderly individuals, ensuring their well-being and dignity.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#experience" class="btn btn-outline">View My Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>About <span>Me</span></h2>
+                <p>Key Areas of Ability</p>
+            </div>
+            <div class="grid">
+                <div class="card fade-in">
+                    <h3>Analysis & Strategy</h3>
+                    <p>Analysis, strategy development and delivery from identified needs. Traditional care and commitment to organizational targets.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>Communication</h3>
+                    <p>Communication nucleus with depth of cultural awareness. Rapport and relationship management with lasting focus.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>Self-Motivated</h3>
+                    <p>Highly motivated self-starter who takes initiative with minimal supervision. Enthusiastic, knowledge-hungry learner committed to excellence.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>Team Player</h3>
+                    <p>Resourceful team player who excels at building relationships. Conscientious, organized, dedicated, and committed to professionalism.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background: rgba(13, 148, 136, 0.05);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>My <span>Skills</span></h2>
+                <p>Core competencies and areas of expertise</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item fade-in">
+                    <div class="icon">&#128106;</div>
+                    <h4>Personal Care</h4>
+                    <p>Bathing, dressing, grooming assistance</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="icon">&#128138;</div>
+                    <h4>Health Monitoring</h4>
+                    <p>Vital signs, medication schedules</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="icon">&#127822;</div>
+                    <h4>Meal Preparation</h4>
+                    <p>Nutritious meal planning & cooking</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="icon">&#127960;</div>
+                    <h4>Housekeeping</h4>
+                    <p>Clean & safe home environment</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="icon">&#128101;</div>
+                    <h4>Companionship</h4>
+                    <p>Emotional support & social engagement</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="icon">&#128663;</div>
+                    <h4>Transportation</h4>
+                    <p>Medical appointments & social outings</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="icon">&#129314;</div>
+                    <h4>Dementia Care</h4>
+                    <p>Specialized cognitive support</p>
+                </div>
+                <div class="skill-item fade-in">
+                    <div class="icon">&#128196;</div>
+                    <h4>Documentation</h4>
+                    <p>Care plans & incident reports</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Work <span>Experience</span></h2>
+                <p>Professional journey in aged & home care</p>
+            </div>
+            <div class="grid">
+                <div class="card fade-in">
+                    <h3>Home Care Worker</h3>
+                    <p class="card-meta">Right at Home | Waterloo, NSW</p>
+                    <ul>
+                        <li>Provided compassionate and personalized care to elderly and disabled clients</li>
+                        <li>Assisted with daily living activities such as bathing, dressing, and meal preparation</li>
+                        <li>Monitored client health including vital signs and medication schedules</li>
+                        <li>Fostered emotional support and companionship for clients</li>
+                        <li>Maintained a clean and safe environment following hygiene protocols</li>
+                        <li>Supported clients with mobility and transportation needs</li>
+                    </ul>
+                </div>
+                <div class="card fade-in">
+                    <h3>Home Care Worker</h3>
+                    <p class="card-meta">Vital Home Health Services | Burwood, NSW</p>
+                    <ul>
+                        <li>Provided personalized in-home care services to elderly clients</li>
+                        <li>Assisted with daily activities including bathing, dressing, meal prep</li>
+                        <li>Developed positive relationships with clients and families</li>
+                        <li>Monitored and reported changes in clients health conditions</li>
+                        <li>Ensured safe home environment following infection control protocols</li>
+                    </ul>
+                </div>
+                <div class="card fade-in">
+                    <h3>Aged Care Worker</h3>
+                    <p class="card-meta">Yafa Care | Sydney, NSW</p>
+                    <ul>
+                        <li>Supported elderly residents with daily living activities and emotional support</li>
+                        <li>Assisted in implementing individualized care plans</li>
+                        <li>Participated in dementia care programs for residents with cognitive impairments</li>
+                        <li>Collaborated with healthcare professionals to monitor resident well-being</li>
+                        <li>Maintained accurate records of care and documented incidents</li>
+                    </ul>
+                </div>
+                <div class="card fade-in">
+                    <h3>Assistant In Nursing (Placement)</h3>
+                    <p class="card-meta">Allity Bolton Clarke | Pemulwuy, NSW</p>
+                    <ul>
+                        <li>Protected residents rights and maintained dignity and privacy</li>
+                        <li>Attended to personal needs and activities of daily living</li>
+                        <li>Provided domestic services including food handling, laundry, cleaning</li>
+                        <li>Supported resident choice and decision making</li>
+                        <li>Completed appropriate Incident/Hazard Reports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section id="education" style="background: rgba(13, 148, 136, 0.05);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Education & <span>Certifications</span></h2>
+                <p>Qualifications and professional development</p>
+            </div>
+            <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="fade-in">
+                    <div class="edu-item">
+                        <h4>Certificate III in Individual Support (Ageing)</h4>
+                        <p class="edu-school">Certification</p>
+                        <p>Nationally recognized qualification in aged care support</p>
+                    </div>
+                    <div class="edu-item">
+                        <h4>Certification III in Aged Care</h4>
+                        <p class="edu-school">Global Educational Institute (GEI)</p>
+                    </div>
+                    <div class="edu-item">
+                        <h4>Bachelor of Information Technology</h4>
+                        <p class="edu-school">Kings Own Institute (KOI)</p>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="cert-item">
+                        <div class="icon">&#9989;</div>
+                        <div>
+                            <h4>Certificate III in Individual Support Ageing</h4>
+                            <p>Core aged care qualification</p>
+                        </div>
+                    </div>
+                    <div class="section-title" style="text-align: left; margin-top: 30px; margin-bottom: 20px;">
+                        <h2>Professional <span>Trainings</span></h2>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Manual Handling</span>
+                        <span class="tag">Infection Control & Hand Hygiene</span>
+                        <span class="tag">Dementia Handling</span>
+                        <span class="tag">Elder Abuse Training</span>
+                        <span class="tag">WHS Training</span>
+                        <span class="tag">Cultural Diversities Training</span>
+                        <span class="tag">Incident/Accident/Hazard Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Achievements & <span>Interests</span></h2>
+            </div>
+            <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="fade-in">
+                    <div class="achievement-item">
+                        <span class="check">&#9733;</span>
+                        <p>Highly appreciated for hard work and efforts at every workplace</p>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="check">&#9733;</span>
+                        <p>Highly appreciated at work placement for quick learning attributes</p>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="check">&#9733;</span>
+                        <p>Highly appreciated by management and clients for contributions and support</p>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="card">
+                        <h3>Interests</h3>
+                        <ul>
+                            <li>Working for the community and society</li>
+                            <li>Aged care, disability care and childcare</li>
+                            <li>Basic computers with administration roles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: rgba(13, 148, 136, 0.05);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Get In <span>Touch</span></h2>
+                <p>Feel free to reach out for any care position opportunities</p>
+            </div>
+            <div class="contact-grid">
+                <a href="tel:0421713830" class="contact-item fade-in">
+                    <div class="icon">&#128222;</div>
+                    <h4>Phone</h4>
+                    <p>0421 713 830</p>
+                </a>
+                <div class="contact-item fade-in">
+                    <div class="icon">&#128205;</div>
+                    <h4>Location</h4>
+                    <p>Claymore, NSW</p>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="icon">&#128101;</div>
+                    <h4>Availability</h4>
+                    <p>Available for Care Positions</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="mailto:liza.shrestha@example.com" class="btn btn-primary fade-in">Send Me an Email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" title="LinkedIn">&#128188;</a>
+                <a href="#" title="Email">&#9993;</a>
+            </div>
+            <p>&copy; 2026 Liza Shrestha. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.85rem;">Aged & Home Care Professional | Claymore, NSW</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" title="Scroll to top">&#8593;</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.style.display = window.scrollY > 500 ? 'flex' : 'none';
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
